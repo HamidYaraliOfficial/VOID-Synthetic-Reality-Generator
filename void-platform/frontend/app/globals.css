@@ -1,0 +1,91 @@
+@import '../styles/themes.css';
+
+.void-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--fg-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.void-icon-btn:hover { background: var(--bg-hover); color: var(--fg-primary); }
+.void-icon-btn[data-active='true'] { background: var(--accent); color: var(--accent-fg); }
+
+.void-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-panel-solid);
+  color: var(--fg-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+.void-btn:hover { background: var(--bg-hover); }
+.void-btn:active { transform: scale(0.97); }
+.void-btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+.void-btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.void-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.void-input, .void-select {
+  background: var(--bg-panel-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--fg-primary);
+  font-size: 13px;
+  padding: 6px 10px;
+  font-family: inherit;
+}
+.void-input:focus, .void-select:focus { border-color: var(--accent); }
+
+.void-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--fg-tertiary);
+  font-weight: 600;
+}
+
+.void-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--bg-hover);
+  color: var(--fg-secondary);
+}
+.void-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.void-badge.running { color: var(--success); border-color: var(--success); }
+.void-badge.paused { color: var(--warning); border-color: var(--warning); }
+.void-badge.stopped, .void-badge.idle { color: var(--fg-tertiary); }
+
+.void-card {
+  background: var(--bg-panel-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+@keyframes void-drift {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  50%  { transform: translate(6px,-4px) rotate(2deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+.void-constellation { animation: void-drift 14s ease-in-out infinite; }

@@ -1,0 +1,186 @@
+/*
+  VOID design tokens.
+  ------------------------------------------------------------------
+  Two families of theme live side by side:
+
+    - "light" / "dark"  -> VOID's own product identity: a Fluent-style
+      Mica surface language borrowed from Windows 11, paired with a
+      signature synthetic-violet accent (#7C5CFC) instead of Windows'
+      stock blue, so the tool reads as its own product rather than a
+      shell extension.
+    - "win11" / "red" / "blue" -> literal Windows 11 accent palettes
+      (System blue, System red, an electric System blue variant) for
+      teams who want VOID visually blended into native Windows chrome.
+
+  Typography follows the real Windows 11 stack: Segoe UI Variable for
+  UI text, Cascadia Code for anything numeric/console/monospace.
+*/
+
+:root {
+  --font-ui: 'Segoe UI Variable Display', 'Segoe UI', 'Vazirmatn', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', 'SFMono-Regular', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-elevation-1: 0 1px 2px rgba(0,0,0,.14);
+  --shadow-elevation-2: 0 4px 16px rgba(0,0,0,.18);
+  --shadow-elevation-3: 0 10px 32px rgba(0,0,0,.28);
+
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 24px; --space-6: 32px;
+
+  --transition-fast: 120ms cubic-bezier(.2,.8,.2,1);
+  --transition-med: 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---------- VOID Light ---------- */
+[data-theme='light'] {
+  --bg-canvas: #F6F5FA;
+  --bg-panel: #FFFFFFCC;
+  --bg-panel-solid: #FFFFFF;
+  --bg-hover: #EFEDFB;
+  --bg-pressed: #E4E0FA;
+  --border: #DEDBEC;
+  --fg-primary: #1B1730;
+  --fg-secondary: #5B5675;
+  --fg-tertiary: #8B85A3;
+  --accent: #7C5CFC;
+  --accent-hover: #6A47F5;
+  --accent-fg: #FFFFFF;
+  --success: #0F9D58;
+  --warning: #C77700;
+  --danger: #D0341C;
+  --console-bg: #100E1C;
+  --console-fg: #D9D6EF;
+  --scrollbar: #C9C4E6;
+}
+
+/* ---------- VOID Dark ---------- */
+[data-theme='dark'] {
+  --bg-canvas: #131019;
+  --bg-panel: #1B1727EE;
+  --bg-panel-solid: #1D1929;
+  --bg-hover: #262038;
+  --bg-pressed: #2E2645;
+  --border: #322C48;
+  --fg-primary: #F1EFFB;
+  --fg-secondary: #B4AECD;
+  --fg-tertiary: #7C7595;
+  --accent: #9B82FF;
+  --accent-hover: #B39CFF;
+  --accent-fg: #14101F;
+  --success: #3DDC84;
+  --warning: #FFC061;
+  --danger: #FF6B5E;
+  --console-bg: #0B0912;
+  --console-fg: #CFC9EA;
+  --scrollbar: #3A3352;
+}
+
+/* ---------- Windows 11 Default (native Mica + System Blue) ---------- */
+[data-theme='win11'] {
+  --bg-canvas: #F3F3F3;
+  --bg-panel: #FFFFFFB3;
+  --bg-panel-solid: #FBFBFB;
+  --bg-hover: #E9E9E9;
+  --bg-pressed: #DEDEDE;
+  --border: #E1E1E1;
+  --fg-primary: #1A1A1A;
+  --fg-secondary: #5C5C5C;
+  --fg-tertiary: #8A8A8A;
+  --accent: #0078D4;
+  --accent-hover: #106EBE;
+  --accent-fg: #FFFFFF;
+  --success: #107C10;
+  --warning: #9D5D00;
+  --danger: #C42B1C;
+  --console-bg: #0C0C0C;
+  --console-fg: #E5E5E5;
+  --scrollbar: #C7C7C7;
+}
+
+/* ---------- Windows Red accent (Mica dark + System Red) ---------- */
+[data-theme='red'] {
+  --bg-canvas: #1B1414;
+  --bg-panel: #241A1AEE;
+  --bg-panel-solid: #271C1C;
+  --bg-hover: #33201F;
+  --bg-pressed: #3D2725;
+  --border: #402B2A;
+  --fg-primary: #F8ECEA;
+  --fg-secondary: #CBAFAC;
+  --fg-tertiary: #977E7C;
+  --accent: #E74B3C;
+  --accent-hover: #F16354;
+  --accent-fg: #1B0F0E;
+  --success: #4FCB7A;
+  --warning: #F3B04C;
+  --danger: #FF7A6B;
+  --console-bg: #120C0C;
+  --console-fg: #EAD6D3;
+  --scrollbar: #4A302E;
+}
+
+/* ---------- Windows Blue accent (Mica dark + Electric Blue) ---------- */
+[data-theme='blue'] {
+  --bg-canvas: #10161E;
+  --bg-panel: #16202CEE;
+  --bg-panel-solid: #182430;
+  --bg-hover: #1E2E3E;
+  --bg-pressed: #24384C;
+  --border: #26374A;
+  --fg-primary: #EAF2FB;
+  --fg-secondary: #A9C0D6;
+  --fg-tertiary: #728AA0;
+  --accent: #2899F5;
+  --accent-hover: #4CADFF;
+  --accent-fg: #06131F;
+  --success: #43D18A;
+  --warning: #F5B44C;
+  --danger: #FF6F61;
+  --console-bg: #060B11;
+  --console-fg: #CADCEC;
+  --scrollbar: #24405A;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  transition: background var(--transition-med), color var(--transition-med);
+  -webkit-font-smoothing: antialiased;
+}
+[dir='rtl'] body { font-family: 'Vazirmatn', var(--font-ui); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+a { color: inherit; }
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+.void-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.void-scrollable { overflow-y: auto; overflow-x: hidden; }
+
+.void-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
