@@ -1,0 +1,16 @@
+{
+  "name": "User",
+  "fields": [
+    { "name": "id", "type": "uuid", "generator": "uuid", "required": true, "unique": true },
+    { "name": "name", "type": "string", "generator": "name" },
+    { "name": "email", "type": "string", "generator": "email" },
+    { "name": "signupDate", "type": "datetime", "generator": "date" },
+    {
+      "name": "plan", "type": "enum", "generator": "weighted_random",
+      "enumValues": ["free", "pro", "enterprise"],
+      "params": { "values": ["free", "pro", "enterprise"], "weights": [70, 25, 5] }
+    }
+  ],
+  "states": ["anonymous", "active", "churned"],
+  "initialState": "anonymous"
+}

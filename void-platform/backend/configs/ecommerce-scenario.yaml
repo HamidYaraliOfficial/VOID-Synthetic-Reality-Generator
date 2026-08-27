@@ -1,0 +1,68 @@
+version: 1
+kind: scenario
+metadata:
+  name: E-Commerce Launch Day
+  schemas:
+    - name: Customer
+      fields:
+        - name: id
+          type: uuid
+          generator: uuid
+        - name: name
+          type: string
+          generator: name
+        - name: email
+          type: string
+          generator: email
+        - name: signupDate
+          type: datetime
+          generator: date
+    - name: Order
+      fields:
+        - name: id
+          type: uuid
+          generator: uuid
+        - name: customerId
+          type: string
+          generator: dependent
+          params:
+            relatedType: Customer
+        - name: amount
+          type: float
+          generator: distribution
+          params:
+            kind: lognormal
+            mean: 3.5
+            stddev: 0.6
+spec:
+  id: ecommerce-launch
+  name: E-Commerce Launch Day
+  seed: 20260101
+  timeScale: 120
+  timeline:
+    - id: spawn-customers
+      at: 0
+      kind: spawn
+      params:
+        schema: Customer
+        count: 50000
+    - id: spawn-orders
+      at: 5000000000
+      kind: spawn
+      params:
+        schema: Order
+        count: 12000
+    - id: peak-latency
+      at: 10000000000
+      kind: chaos
+      duration: 30000000000
+      params:
+        kind: high_latency
+        from: gateway
+        to: checkout-service
+        latencyMs: 800
+    - id: snapshot-end
+      at: 20000000000
+      kind: snapshot
+      params:
+        label: ecommerce-launch-final

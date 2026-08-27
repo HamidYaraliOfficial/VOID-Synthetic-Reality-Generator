@@ -1,0 +1,43 @@
+{
+  "name": "user-journey",
+  "entry": "login",
+  "nodes": {
+    "login": {
+      "id": "login",
+      "kind": "event",
+      "params": { "type": "login" },
+      "next": ["browse"]
+    },
+    "browse": {
+      "id": "browse",
+      "kind": "delay",
+      "params": { "ms": 200 },
+      "next": ["will_purchase"]
+    },
+    "will_purchase": {
+      "id": "will_purchase",
+      "kind": "probability",
+      "params": { "p": 0.3 },
+      "next": ["purchase"],
+      "onFailure": ["logout"]
+    },
+    "purchase": {
+      "id": "purchase",
+      "kind": "event",
+      "params": { "type": "purchase" },
+      "next": ["state_active"]
+    },
+    "state_active": {
+      "id": "state_active",
+      "kind": "state_change",
+      "params": { "state": "active" },
+      "next": ["logout"]
+    },
+    "logout": {
+      "id": "logout",
+      "kind": "event",
+      "params": { "type": "logout" },
+      "next": []
+    }
+  }
+}
